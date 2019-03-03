@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Buat akun baru</title>
+</head>
+<body>
+<h1>Buat akun baru</h1>
+<p>Gunakan form ini untuk membuat akun baru Anda.</p>
+<form action="/create_account" method="post">
+	<p>Nama pengguna: </p><input type="text" name="username" placeholder="Nama Pengguna" id="my_container" required>
+	<br>
+    <p>Kata Sandi: </p><input type="password" name="password" placeholder="Kata Sandi" id="pass_container" required>
+    <br>
+    <p>Konfirmasi Kata Sandi: </p><input type="password" name="password_confirm" placeholder="Konfirmasi Kata Sandi" id="pass_container" required>
+    <input type="submit" value="Buat Akun Baru">
+</form>
+<p>Sudah mempunyai akun? <a href="/create_account">Masuk log!</a></p>
+</body>
+</html>
