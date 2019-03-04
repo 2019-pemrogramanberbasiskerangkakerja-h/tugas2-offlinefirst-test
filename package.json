@@ -1,11 +1,12 @@
 {
   "name": "pbkk-2",
   "version": "1.0.0",
-  "description": "",
+  "description": "tugas2-offlinefirst-test created by GitHub Classroom",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "mariadb": "^2.0.3",
     "realm": "^2.24.0"
   },
   "devDependencies": {},
@@ -13,5 +14,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2019-pemrogramanberbasiskerangkakerja-h/tugas2-offlinefirst-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/2019-pemrogramanberbasiskerangkakerja-h/tugas2-offlinefirst-test/issues"
+  },
+  "homepage": "https://github.com/2019-pemrogramanberbasiskerangkakerja-h/tugas2-offlinefirst-test#readme"
 }
