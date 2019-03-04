@@ -6,6 +6,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "mariadb": "^0.7.0",
     "md5": "^2.2.1",
     "realm": "^2.24.0"
