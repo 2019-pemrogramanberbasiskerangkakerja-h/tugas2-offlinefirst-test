@@ -43,18 +43,25 @@ router.post('/login', function(req, res) {
     	console.log(md5(pass));
     	if (md5(pass) == mkmk) {
     		console.log('password benar');
-    		res.redirect('/')
+    		res.redirect('/berhasillogin')
     	}
     	else {
     		console.log('password salah');
-    		res.redirect('/login')
+    		res.redirect('/gagallogin')
     	}
     }).catch(err => {
     	console.log(err);
-    	res.redirect('/login');
+    	res.redirect('/gagallogin');
     })
 });
 
+router.get('/berhasillogin',  function(req, res) {
+	res.sendFile(path.join(__dirname+'/berhasillogin.html'));
+});
+
+router.get('/gagallogin',  function(req, res) {
+	res.sendFile(path.join(__dirname+'/gagallogin.html'));
+});
 
 router.get('/create_account',function(req,res){
   res.sendFile(path.join(__dirname+'/create_account.html'));
