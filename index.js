@@ -88,30 +88,11 @@ router.post('/create_account', function(req, res) {
 	}
 	else {
 		console.log(query);
-		pool.getConnection()
-	    .then(conn => {
-	    
-	      conn.query("SELECT 1 as val")
-	        .then((rows) => {
-	          console.log(rows); //[ {val: 1}, meta: ... ]
-	          //Table must have been created before 
-	          // " CREATE TABLE myTable (id int, val varchar(255)) "
-	          return conn.query(query);
-	        })
-	        .then((res) => {
-	          console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
-	          res.redirect("/suksesbuatakun");
-	          conn.end();
-	        })
-	        .catch(err => {
-	          //handle error
-	          console.log(err);
-	          res.redirect("/gagalbuatakun"); 
-	          conn.end();
-	        })
-	        
-	    }).catch(err => {
-	      //not connected
+	    pool.query(query)
+	    .then(results => {
+	    	res.redirect('/suksesbuatakun');
+	    }).catch (err => {
+	    	res.redirect('/gagalbuatakun');
 	    });
 	}
 });
