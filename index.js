@@ -12,7 +12,7 @@ var sess;
 app.use(bodyParser.urlencoded({extended : true}));
 
 const pool = mariadb.createPool({
-     host: '10.151.254.147', 
+     host: '10.151.254.145', 
      user:'root', 
      database: 'pbkk_2',
      port: 3306
@@ -161,6 +161,68 @@ router.get('/gagallogin',  function(req, res) {
 
 router.get('/create_account',function(req,res){
   res.sendFile(path.join(__dirname+'/create_account.html'));
+  var un1 = [];
+	var un2 = [];
+	var pas1 = [];
+	var pas2 = [];
+	var query = 'select * from users';
+	console.log(query)
+	pool.query(query).then(results => {
+		for(var i = 0;i<results.length;i++) {
+			un1.push(results[i].username);
+			pas1.push(results[i].password);
+		}
+		pool2.query(query).then(results => {
+			for (var i=0;i<results.length;i++) {
+				un2.push(results[i].username);
+				pas2.push(results[i].password);
+			}
+			/*console.log(time2[1].toString());
+			console.log(desc2[1]);
+			console.log(time1[1].toString());
+			console.log(desc1[1]);
+			if (time2[1].toString() == time1[1].toString()) {
+				console.log('sama');
+			}*/
+			for (var i=0;i<un1.length;i++) {
+				var flag=0;
+				for (var j=0;j<un2.length;j++) {
+					console.log('data ke- ' + i + j)
+					var test1 = un1[i];
+					var test2 = un2[j];
+					if (test1 == test2) {
+						flag=flag+1;
+						console.log('data ke' + i + j + 'sama');
+						console.log(un1[i]);
+						console.log(pas1[i]);
+						console.log('---')
+					}
+					else {
+						console.log('data ke '+ i + j + ' beda');
+						console.log(un1[i]);
+						console.log(pas1[i]);
+						console.log(un2[j]);
+						console.log(pas2[j]);
+						console.log('---')
+					}
+					//console.log(flag);
+					/*if (flag == 0) {
+						var k =new Date(time2[j]).getTime()/1000
+						var querying='insert into log values(' + "FROM_UNIXTIME("+ k + ")"+ ',' + "'"+ desc2[j] +  "'"+')';
+						console.log(querying);
+					}*/
+				}
+				console.log(flag);
+				if (flag == 0) {
+					//var k =new Date(time1[i]).getTime()/1000;
+					//console.log(k)
+					var querying='insert into users values(' + "'" +un1[i] + "'" + ',' +"'" + pas1[i] + "'"+ ')';
+					console.log(querying);
+					pool2.query(querying);
+				}
+			}
+		});
+	});
 });
 
 router.post('/create_account', function(req, res) {
@@ -181,6 +243,7 @@ router.post('/create_account', function(req, res) {
 	    	res.redirect('/gagalbuatakun');
 	    });
 	}
+
 });
 
 router.get('/gagalbuatakun', function(req, res) {
