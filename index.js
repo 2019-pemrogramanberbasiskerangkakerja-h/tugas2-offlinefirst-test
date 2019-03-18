@@ -12,7 +12,7 @@ var sess;
 app.use(bodyParser.urlencoded({extended : true}));
 
 const pool = mariadb.createPool({
-     host: '192.168.1.135', 
+     host: '10.151.254.147', 
      user:'root', 
      database: 'pbkk_2',
      port: 3306
@@ -129,7 +129,7 @@ router.post('/login', function(req, res) {
 	console.log("Mencoba login dengan nama pengguna", uname, "dengan password", pass);
 	query = 'select password from users where username=' + "'" + uname + "'"
 	console.log(query)
-    pool.query(query)
+    pool2.query(query)
     .then(results => {
     	mkmk = results[0].password;
     	console.log(mkmk);
@@ -137,7 +137,7 @@ router.post('/login', function(req, res) {
     	if (md5(pass) == mkmk) {
     		console.log('password benar');
     		var querylogin = 'insert into log values(now(),' + "'" + 'login username ' + uname + ' sukses' + "')";
-    		pool.query(querylogin);
+    		pool2.query(querylogin);
     		console.log(querylogin);
     		res.redirect('/berhasillogin')
     	}
@@ -174,7 +174,7 @@ router.post('/create_account', function(req, res) {
 	}
 	else {
 		console.log(query);
-	    pool.query(query)
+	    pool2.query(query)
 	    .then(results => {
 	    	res.redirect('/suksesbuatakun');
 	    }).catch (err => {
