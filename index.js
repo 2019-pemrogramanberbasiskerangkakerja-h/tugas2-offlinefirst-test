@@ -177,13 +177,6 @@ router.get('/create_account',function(req,res){
 				un2.push(results[i].username);
 				pas2.push(results[i].password);
 			}
-			/*console.log(time2[1].toString());
-			console.log(desc2[1]);
-			console.log(time1[1].toString());
-			console.log(desc1[1]);
-			if (time2[1].toString() == time1[1].toString()) {
-				console.log('sama');
-			}*/
 			for (var i=0;i<un1.length;i++) {
 				var flag=0;
 				for (var j=0;j<un2.length;j++) {
@@ -205,17 +198,9 @@ router.get('/create_account',function(req,res){
 						console.log(pas2[j]);
 						console.log('---')
 					}
-					//console.log(flag);
-					/*if (flag == 0) {
-						var k =new Date(time2[j]).getTime()/1000
-						var querying='insert into log values(' + "FROM_UNIXTIME("+ k + ")"+ ',' + "'"+ desc2[j] +  "'"+')';
-						console.log(querying);
-					}*/
 				}
 				console.log(flag);
 				if (flag == 0) {
-					//var k =new Date(time1[i]).getTime()/1000;
-					//console.log(k)
 					var querying='insert into users values(' + "'" +un1[i] + "'" + ',' +"'" + pas1[i] + "'"+ ')';
 					console.log(querying);
 					pool2.query(querying);
